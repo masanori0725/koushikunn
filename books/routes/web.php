@@ -24,7 +24,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/edit/{id}', 'ReviewController@edit')->name('edit');
 
-    Route::get('/update/{id}', 'ReviewController@update')->name('update');
+    Route::post('/update/{id}', 'ReviewController@update')->name('update');
 
     Route::get('/reviewdelete/{id}', 'ReviewController@destroy')->name('delete');
 });

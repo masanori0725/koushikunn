@@ -57,7 +57,14 @@ class ReviewController extends Controller
 
     public function update(Request $request)
     {
-        $review = Review::find($review_id);
+        $review = Review::find($request->id);
+        $review->title = $request->title;
+        $review->body = $request->body;
+        
+        if ($request->hasFile('image')) {
+            $request->file('image')->store('/public/images');
+            $review->image = $request->image;
+        }
         $review->save();
         return redirect('/')->with('flash_message', '編集が完了しました');
     }
