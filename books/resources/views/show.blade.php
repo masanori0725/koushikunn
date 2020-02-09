@@ -24,7 +24,7 @@
       </aside>
     </div>
     <a href="{{ route('edit', ['id' => $review]) }}" class='btn btn-info btn-back mb20'>編集する</a>
-    <a href="{{ route('destroy', ['id' => $review]) }}" class='btn btn-info btn-back mb20'>削除する</a>
+    <a href="{{ route('delete', ['id' => $review]) }}" class='btn btn-info btn-back mb20' >削除する</a>
     <a href="{{ route('index') }}" class='btn btn-info btn-back mb20'>一覧へ戻る</a>
   </div>
 </div>

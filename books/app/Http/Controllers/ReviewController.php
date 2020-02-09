@@ -52,6 +52,12 @@ class ReviewController extends Controller
     public function edit($review_id)
     {
         $review = Review::find($review_id);
+        return view('edit', ['review' => $review]);  
+    }
+
+    public function update(Request $request)
+    {
+        $review = Review::find($review_id);
         $review->save();
         return redirect('/')->with('flash_message', '編集が完了しました');
     }

@@ -16,15 +16,17 @@ Route::get('/' , 'ReviewController@index')->name('index');
 
 Route::get('/show/{id}', 'ReviewController@show')->name('show');
 
-Route::post('/edit/{id}', 'ReviewController@edit')->name('edit');
-
-Route::delete('/reviewdelete/{id}', 'ReviewController@destroy')->name('delete');
-
 Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/review', 'ReviewController@create')->name('create');
 
     Route::post('/review/store', 'ReviewController@store')->name('store');
+
+    Route::get('/edit/{id}', 'ReviewController@edit')->name('edit');
+
+    Route::get('/update/{id}', 'ReviewController@update')->name('update');
+
+    Route::get('/reviewdelete/{id}', 'ReviewController@destroy')->name('delete');
 });
 
 
