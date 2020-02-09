@@ -12,7 +12,7 @@
       <div class="card-body">
       @if(!empty($review->image))
         <div class="image-wrapper">
-          <img src="{{ asset('storage/images/'.$review->image) }}" alt="" class="book-image">
+          <img src="{{ asset($review->image) }}" alt="" class="book-image">
         </div>
       @else
         <div class="image-wrapper">
