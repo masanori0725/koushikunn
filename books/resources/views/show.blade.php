@@ -17,7 +17,7 @@
       </section>  
       <aside class='review-image'>
 @if(!empty($review->image))
-        <img class='book-image' src="{{ asset('storage/images/'.$review->image) }}">
+        <img class='book-image' src="{{ asset($review->image) }}">
 @else
         <img class='book-image' src="{{ asset('images/dummy.png') }}">
 @endif

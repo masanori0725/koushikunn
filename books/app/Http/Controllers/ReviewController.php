@@ -36,8 +36,9 @@ class ReviewController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $request->file('image')->store('/public/images');
-            $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body'], 'image' => $request->file('image')->hashName()];
+            $filename = $request->file('image')->store('/public/images');
+            $filename = str_replace('public/', 'storage/', $filename);
+            $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body'], 'image' => $filename];
         } else {
             $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body']];
         }
@@ -62,8 +63,9 @@ class ReviewController extends Controller
         $review->body = $request->body;
         
         if ($request->hasFile('image')) {
-            $request->file('image')->store('/public/images');
-            $review->image = $request->image;
+            $filename = $request->file('image')->store('/public/images');
+            $filename = str_replace('public/', 'storage/', $filename);
+            $review->image = $filename;
         }
         $review->save();
         return redirect('/')->with('flash_message', '編集が完了しました');
