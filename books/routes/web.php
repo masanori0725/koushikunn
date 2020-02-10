@@ -27,6 +27,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/update/{id}', 'ReviewController@update')->name('update');
 
     Route::get('/reviewdelete/{id}', 'ReviewController@destroy')->name('delete');
+
+    //コメント投稿処理
+    Route::post('/show/{comment_id}/comments','CommentsController@store');
+
+    //コメント取消処理
+    Route::get('/comments/{comment_id}', 'CommentsController@destroy');
 });
 
 

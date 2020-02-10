@@ -26,6 +26,17 @@
     <a href="{{ route('edit', ['id' => $review]) }}" class='btn btn-info btn-back mb20'>編集する</a>
     <a href="{{ route('delete', ['id' => $review]) }}" class='btn btn-info btn-back mb20' >削除する</a>
     <a href="{{ route('index') }}" class='btn btn-info btn-back mb20'>一覧へ戻る</a>
+    <div id="comment-post-{{ $review->id }}">
+      @include('post.comment_list')
+    </div>
+    <hr>
+    <div class="row actions" id="comment-form-post-{{ $review->id }}">
+      <form class="w-100" id="new_comment" action="/show/{{ $review->id }}/comments" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓" />
+        {{csrf_field()}} 
+        <input value="{{ $review->id }}" type="hidden" name="comment_id" />
+        <input class="form-control comment-input border-0" placeholder="コメント ..." autocomplete="off" type="text" name="comments" />
+      </form>
+    </div>
   </div>
 </div>
 @endsection
