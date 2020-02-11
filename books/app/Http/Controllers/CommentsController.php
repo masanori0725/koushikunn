@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
-use App\Post;
+use App\Review;
 use Auth;
 use Validator;
 use Illuminate\Http\Request;

@@ -42,8 +42,7 @@
             @include('post.like_text')
           </div>
           <div>
-            <span><strong>{{ $review->user->name }}</strong></span>
-            <span>{{ $review->caption }}</span>
+            <!-- <span><strong>{{ $review->user->name }}</strong></span> -->
           </div>
         </div>
     <div id="comment-post-{{ $review->id }}">

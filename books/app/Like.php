@@ -12,8 +12,8 @@ class Like extends Model
         return $this->belongsTo('App\User');
     }
 
-    Public function review()
+    public function review()
     {
-        return $this->belongsTo('App\Post');
+        return $this->belongsTo('App\Review');
     }
 }

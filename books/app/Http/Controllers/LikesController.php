@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
+use App\Like;
+use App\Review;
 use Auth;
 use Validator;
 
