@@ -28,6 +28,13 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/reviewdelete/{id}', 'ReviewController@destroy')->name('delete');
 
+    //いいね処理
+    Route::get('/show/{review_id}/likes', 'LikesController@store');
+
+    //いいね取消処理
+    Route::get('/likes/{like_id}', 'LikesController@destroy');
+
+
     //コメント投稿処理
     Route::post('/show/{comment_id}/comments','CommentsController@store');
 

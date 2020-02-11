@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Like extends Model
 {
     //
     public function user()
@@ -12,7 +12,7 @@ class Comment extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function review()
+    Public function review()
     {
         return $this->belongsTo('App\Post');
     }
