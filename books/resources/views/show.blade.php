@@ -30,11 +30,14 @@
     <div class="card-body">
           <div class="row parts">
             <div id="like-icon-post-{{ $review->id }}">
+          
               @if ($review->likedBy(Auth::user())->count() > 0)
                 <a class="loved hide-text" data-remote="true" rel="nofollow" data-method="DELETE" href="/likes/{{ $review->likedBy(Auth::user())->firstOrFail()->id }}">いいねを取り消す</a>
               @else
                 <a class="love hide-text" data-remote="true" rel="nofollow" data-method="POST" href="/show/{{ $review->id }}/likes">いいね</a>
               @endif
+          
+              <a class="love hide-text" data-remote="true" rel="nofollow" data-method="POST" href="/show/{{ $review->id }}/likes">いいね</a>
             </div>
             <a class="comment" href="#"></a>
           </div>

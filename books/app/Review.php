@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     //
+
     public function comments()
     {
         return $this->hasMany('App\Comment');
