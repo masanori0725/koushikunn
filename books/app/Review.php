@@ -24,6 +24,6 @@ class Review extends Model
         if (Auth::user() !== null)
         return Like::where('user_id', $user->id)->where('review_id', $this->id);
         else
-        return redirect('/');
+        return redirect('/login');
     }
 }
