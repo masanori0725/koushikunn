@@ -19,11 +19,8 @@ class Review extends Model
         return $this->hasMany('App\Like');
     }
 
-    public function likedBy($user)
+    public function likedBy()
     {
-        if (Auth::user() !== null)
-        return Like::where('user_id', $user->id)->where('review_id', $this->id);
-        else
-        return redirect('/login');
+        return Like::where('user_id', Auth::user()->id)->where('review_id', $this->id)->first();
     }
 }
