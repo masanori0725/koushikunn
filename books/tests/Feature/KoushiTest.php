@@ -16,13 +16,9 @@ class KoushiTest extends TestCase
     public function testExample()
     {
         $response = $this->get('/');
-        dd($response);
         $response->assertStatus(200);
+        $response->assertSee('レビューを書く');
+        $response->assertSee('公務員試験対策本レビューSNS 仔牛くん');
     }
 
-    // public function testIndex()
-    // {
-    //     $this->visit('/')
-    //     ->see('仔牛くん');
-    // }
 }

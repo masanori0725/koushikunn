@@ -14,9 +14,8 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        dd(env('APP_ENV'), env('DB_HOST'), env('DB_DATABASE'));
         $response = $this->get('/');
-        dd($response);
+
         $response->assertStatus(200);
     }
 
