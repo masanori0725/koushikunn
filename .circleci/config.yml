@@ -7,7 +7,26 @@ jobs:
   build:
     docker:
       # Specify the version you desire here
-      - image: circleci/php:latest
+      - image: circleci/php:7.1-node-browsers
+      - image: composer:latest
+
+      working_directory: /work
+    steps:
+      - run:
+          name: Set timezone to Asia/Tokyo
+          command: echo "date.timezone=Asia/Tokyo" > "$PHP_INI_DIR/conf.d/date_timezone.ini"
+      - checkout
+      - restore_cache:
+          name: Restore composer cache
+          keys:
+            - composer-{{ .Environment.COMMON_CACHE_KEY }}-{{ checksum "composer.lock" }}
+            - composer-{{ .Environment.COMMON_CACHE_KEY }}-
+      - run:
+          name: Setup requirements for continuous composer update
+          command: composer global require enomotodev/circleci-composer-update-pr
+      - deploy:
+          name: Continuous composer update
+          command: $COMPOSER_HOME/vendor/bin/circleci-composer-update-pr masanori0725 sanonokuma@gmail.com master
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
