@@ -17,6 +17,7 @@ class KoushiTest extends TestCase
     {
         $response = $this->get('/');
         $response->assertStatus(200);
+        // dd($response);
         $response->assertSee('レビューを書く');
         $response->assertSee('公務員試験対策本レビューSNS 仔牛くん');
     }
