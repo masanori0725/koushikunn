@@ -7,7 +7,8 @@ jobs:
   build:
     docker:
       # Specify the version you desire here
-      - image: circleci/php:7.1-node-browsers
+      - image: circleci/php:7.2-node-browsers
+      - image: circleci/mysql:5.7
       # - image: composer:latest
 
     #   working_directory: /work
@@ -43,6 +44,9 @@ jobs:
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
 
+      # Install PHP Extension
+      - run: sudo docker-php-ext-install pdo_mysql
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -55,8 +59,8 @@ jobs:
           command: pwd
           command: ls
       - run:
-          command: cd books
-      - run: composer install -n --prefer-dist
+          command: cd books && composer install -n --prefer-dist
+      # - run: composer install -n --prefer-dist
 
 
       - save_cache:
@@ -74,12 +78,11 @@ jobs:
             - node_modules
 
       # prepare the database
-      - run: touch storage/testing.sqlite
-      - run: php artisan migrate --env=testing --database=sqlite_testing --force
+          command: cd books && php artisan migrate --env=testing 
 
       # run tests with phpunit or codecept
       #- run: ./vendor/bin/phpunit
-      - run: ./vendor/bin/codecept build
-      - run: ./vendor/bin/codecept run
-      - run: php ./books/artisan --env=testing
+      # - run: ./books/vendor/bin/codecept build
+      # - run: ./books/vendor/bin/codecept run
+      # - run: php ./books/artisan --env=testing
       - run: php ./books/vendor/bin/phpunit --configuration=./books/phpunit.xml
