@@ -38,6 +38,15 @@ jobs:
       #
       # - image: redis:2.8.19
 
+    environment:
+      - APP_DEBUG: true
+      - APP_ENV: testing
+      - APP_KEY: base64:/f+601RIyypgCO7zHQqHk5qE743UvOkzjhdFClFPEPE=
+      - DB_CONNECTION: koushi_testing
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
+
+    working_directory: ~/repo
+
     steps:
       - checkout
 
@@ -46,6 +55,8 @@ jobs:
 
       # Install PHP Extension
       - run: sudo docker-php-ext-install pdo_mysql
+
+      
 
       # Download and cache dependencies
       - restore_cache:
@@ -79,6 +90,7 @@ jobs:
 
       # prepare the database
           command: cd books && php artisan migrate --env=testing 
+
 
       # run tests with phpunit or codecept
       #- run: ./vendor/bin/phpunit
