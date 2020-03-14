@@ -15,7 +15,7 @@ class ExampleTest extends TestCase
     public function testBasicTest()
     {
         $response = $this->get('/');
-        // dd($response);
+        dd($response);
         $response->assertStatus(200);
     }
 
