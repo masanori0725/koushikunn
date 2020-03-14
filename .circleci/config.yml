@@ -128,8 +128,8 @@ jobs:
         #   command: grant all on *.* to 'forge'@'127.0.0.1' with grant option
     #   - run:
         #   command: flush privileges
-      - run:
-          command: cd books && php artisan migrate --env=testing 
+    #   - run:
+        #   command: cd books && php artisan migrate --env=testing 
 
 
       # run tests with phpunit or codecept
