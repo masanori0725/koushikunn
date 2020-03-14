@@ -102,32 +102,32 @@ jobs:
             - node_modules
 
       # prepare the database
-      - run:
-          command: mysql --version
-      - run:
-          command: pwd
-      - run: 
-          command: cd /var/log && ls
-      - run: 
-          command: cd /var/log && pwd
-      - run: 
-          command: cd /var/log/mysqld.log && pwd
-      - run:
-          command: ls
-      - run:
-          command: cd books && ls
-      - run:
-          command: cd node_modules && ls
-      - run:
-          command: cd yarn.lock && ls
+    #   - run:
+        #   command: mysql --version
+    #   - run:
+        #   command: pwd
+    #   - run: 
+        #   command: cd /var/log && ls
+    #   - run: 
+        #   command: cd /var/log && pwd
+    #   - run: 
+        #   command: cd /var/log/mysqld.log && pwd
+    #   - run:
+        #   command: ls
+    #   - run:
+        #   command: cd books && ls
+    #   - run:
+        #   command: cd node_modules && ls
+    #   - run:
+        #   command: cd yarn.lock && ls
       # - run:
       #     command: mysql less password /var/log/mysqld.log
-      - run:
-          command: mysql -u root -proot
-      - run:
-          command: grant all on *.* to 'forge'@'127.0.0.1' with grant option
-      - run:
-          command: flush privileges
+    #   - run:
+        #   command: mysql -u root -proot
+    #   - run:
+        #   command: grant all on *.* to 'forge'@'127.0.0.1' with grant option
+    #   - run:
+        #   command: flush privileges
       - run:
           command: cd books && php artisan migrate --env=testing 
 
