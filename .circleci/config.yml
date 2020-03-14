@@ -40,12 +40,18 @@ jobs:
 
     environment:
       - APP_DEBUG: true
-      - APP_ENV: testing
+      - APP_ENV: local
       - APP_KEY: base64:/f+601RIyypgCO7zHQqHk5qE743UvOkzjhdFClFPEPE=
-      - DB_CONNECTION: koushi_testing
+      - DB_CONNECTION: mysql_testing
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
 
     working_directory: ~/repo
+    
+    dependencies:
+      pre:
+        - sudo apt-add-repository -y 'deb http://ppa.launchpad.net/ondrej/mysql-experimental/ubuntu     precise main'
+        - sudo apt-get update; sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server-5.6
+        - echo '[mysqld]' | sudo sh -c 'cat >>  /etc/mysql/my.cnf'; echo 'innodb_ft_min_token_size = 2' | sudo sh -c 'cat >>  /etc/mysql/my.cnf'; sudo /etc/init.d/mysql restart
 
     steps:
       - checkout
@@ -54,8 +60,15 @@ jobs:
       - run: sudo docker-php-ext-install zip
 
       # Install PHP Extension
-      - run: sudo docker-php-ext-install pdo_mysql
+      # - run: sudo docker-php-ext-install pdo_mysql
 
+      - run:
+          name: setup database
+          command: |
+              sudo -E docker-php-ext-install pdo_mysql
+              sudo apt update
+              sudo apt-get install default-mysql-client
+      
       
 
       # Download and cache dependencies
@@ -66,9 +79,9 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run:
-          command: pwd
-          command: ls
+      # - run:
+      #     command: pwd
+      #     command: ls
       - run:
           command: cd books && composer install -n --prefer-dist
       # - run: composer install -n --prefer-dist
@@ -89,6 +102,33 @@ jobs:
             - node_modules
 
       # prepare the database
+      - run:
+          command: mysql --version
+      - run:
+          command: pwd
+      - run: 
+          command: cd /var/log && ls
+      - run: 
+          command: cd /var/log && pwd
+      - run: 
+          command: cd /var/log/mysqld.log && pwd
+      - run:
+          command: ls
+      - run:
+          command: cd books && ls
+      - run:
+          command: cd node_modules && ls
+      - run:
+          command: cd yarn.lock && ls
+      # - run:
+      #     command: mysql less password /var/log/mysqld.log
+      - run:
+          command: mysql -u root -proot
+      - run:
+          command: grant all on *.* to 'forge'@'127.0.0.1' with grant option
+      - run:
+          command: flush privileges
+      - run:
           command: cd books && php artisan migrate --env=testing 
 
 
