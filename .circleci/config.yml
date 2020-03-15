@@ -10,9 +10,9 @@ jobs:
       - image: circleci/php:7.2-node-browsers
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_DATABASE: 'ci_test'
+          MYSQL_DATABASE: 'koushi_testing'
           MYSQL_USER: 'root'
-          MYSQL_ROOT_PASSWORD: 'rootpass'
+          MYSQL_ROOT_PASSWORD: 'root'
       # - image: composer:latest
 
     #   working_directory: /work
@@ -110,10 +110,10 @@ jobs:
         #   command: mysql --version
     #   - run:
         #   command: pwd
-      - run: 
-          command: cd /var/run && ls
-      - run: 
-          command: cd /var/run/mysqld && ls
+      # - run: 
+          # command: cd /var/run && ls
+      # - run: 
+          # command: cd /var/run/mysqld && ls
     #   - run: 
         #   command: cd /var/log && pwd
     #   - run: 
@@ -134,8 +134,8 @@ jobs:
         #   command: grant all on *.* to 'forge'@'127.0.0.1' with grant option
     #   - run:
         #   command: flush privileges
-    #   - run:
-        #   command: cd books && php artisan migrate --env=testing 
+      - run:
+          command: cd books && php artisan migrate --env=testing 
 
 
       # run tests with phpunit or codecept
