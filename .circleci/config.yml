@@ -53,8 +53,7 @@ jobs:
       - DB_USERNAME: root
       - DB_PASSWORD: root
     
-    - run:
-          command: env
+    
 
     working_directory: ~/repo
     
@@ -69,6 +68,8 @@ jobs:
 
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
+      - run:
+          command: env
 
       # Install PHP Extension
       # - run: sudo docker-php-ext-install pdo_mysql
