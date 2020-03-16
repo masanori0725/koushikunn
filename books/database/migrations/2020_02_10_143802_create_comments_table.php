@@ -19,8 +19,8 @@ class CreateCommentsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->bigInteger('review_id');
             $table->longText('comments');
-            $table->timestamp('updated_at');
-            $table->timestamp('created_at');
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

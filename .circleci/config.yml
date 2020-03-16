@@ -13,6 +13,7 @@ jobs:
           MYSQL_DATABASE: 'koushi_testing'
           MYSQL_USER: 'root'
           MYSQL_ROOT_PASSWORD: 'root'
+          
       # - image: composer:latest
 
     #   working_directory: /work
@@ -48,6 +49,12 @@ jobs:
       - APP_KEY: base64:/f+601RIyypgCO7zHQqHk5qE743UvOkzjhdFClFPEPE=
       - DB_CONNECTION: mysql_testing
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
+      - DB_HOST: 127.0.0.1
+      - DB_USERNAME: root
+      - DB_PASSWORD: root
+    
+    - run:
+          command: env
 
     working_directory: ~/repo
     

@@ -17,8 +17,8 @@ class CreateLikesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('review_id');
             $table->bigInteger('user_id');
-            $table->timestamp('updated_at');
-            $table->timestamp('created_at');
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
