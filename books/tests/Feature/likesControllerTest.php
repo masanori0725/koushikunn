@@ -13,9 +13,9 @@ class LikesControllerTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function likesTest()
     {
-        $response = $this->get('/');
+        $response = $this->get('/show/1/likes');
 
         $response->assertStatus(200);
     }

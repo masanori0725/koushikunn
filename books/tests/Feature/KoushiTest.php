@@ -13,7 +13,7 @@ class KoushiTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function firstTest()
     {
         $response = $this->get('/');
         $response->assertSee('レビューを書く');

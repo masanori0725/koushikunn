@@ -20,7 +20,7 @@ class ReviewControllerTest extends TestCase
      */
     use DatabaseTransactions;
 
-    public function index()
+    public function indexTest()
     {
         $user = factory(User::class)->create();
         $review = factory(Review::class)->create();
@@ -34,14 +34,14 @@ class ReviewControllerTest extends TestCase
             ->assertSee('詳細を読む');
     }
 
-    public function show($id)
+    public function showTest()
     {
         $user = factory(User::class)->create();
         $review = factory(Review::class)->create();
         $response = $this
             ->actingAs($user)
             ->actingAs($review)
-            ->get('/show/{{$id}}');
+            ->get('/show/１');
 
         $response->assertStatus(200)
             ->assertViewIs('show')
@@ -51,7 +51,7 @@ class ReviewControllerTest extends TestCase
 
     }
 
-    public function create()
+    public function createTest()
     {
         $user = factory(User::class)->create();
         $review = factory(Review::class)->create();
@@ -66,7 +66,7 @@ class ReviewControllerTest extends TestCase
     }
 
 
-    public function edit()
+    public function editTest()
     {
         $user = factory(User::class)->create();
         $review = factory(Review::class)->create();
