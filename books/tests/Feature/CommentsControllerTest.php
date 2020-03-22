@@ -6,17 +6,19 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class LikesControllerTest extends TestCase
+class CommentsControllerTest extends TestCase
 {
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public function testExample()
+
+    public function commentsTest()
     {
-        $response = $this->get('/');
+        $response = $this->get('/show/1/comments');
 
         $response->assertStatus(200);
+        $response->assertSee('test');
     }
 }

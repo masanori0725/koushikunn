@@ -66,14 +66,14 @@ class ReviewControllerTest extends TestCase
     }
 
 
-    public function edit($review_id)
+    public function edit()
     {
         $user = factory(User::class)->create();
         $review = factory(Review::class)->create();
         $response = $this
             ->actingAs($user)
             ->actingAs($review)
-            ->get('/edit/{{$review_id}}');
+            ->post('/edit/1');
 
         $response->assertStatus(200)
             ->assertViewIs('review')
